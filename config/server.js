@@ -10,7 +10,6 @@ app.use(
     })
 );
 
-
 app.use(cors());
 app.use(express.json());
 const server = http.createServer(app);
@@ -34,4 +33,4 @@ io.on('connection', socket => {
         socket.to(data.room).emit('rcvmsg', data)
     })
 })
-server.listen(6075)
+server.listen(6074)
