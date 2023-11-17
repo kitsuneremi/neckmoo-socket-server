@@ -23,8 +23,9 @@ const io = new Server(server, {
             "http://localhost:3001",
             "https://www.erinasaiyukii.com",
             "https://erinasaiyukii.com",
+            "*"
         ],
-        methods: ["GET", "POST"],
+        methods: ["GET", "POST"], 
     },
 });
 
