@@ -23,7 +23,7 @@ const io = new Server(server, {
             "http://localhost:3001",
             "https://www.erinasaiyukii.com",
             "https://erinasaiyukii.com",
-            "*"
+            "https://lily-lyart.vercel.app"
         ],
         methods: ["GET", "POST"], 
     },
