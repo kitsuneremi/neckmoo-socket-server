@@ -5,6 +5,7 @@ const http = require("http");
 const { Server } = require("socket.io");
 const mongoose = require("mongoose");
 const liveChats = require("../model/liveComments");
+const messageModel = require("../model/message")
 
 mongoose.connect("mongodb+srv://lily:lily@lily.nqsymng.mongodb.net/lily");
 
@@ -27,7 +28,7 @@ const io = new Server(server, {
             "https://www.lyart.pro.vn",
             "https://lily-lyart.vercel.app"
         ],
-        methods: ["GET", "POST"], 
+        methods: ["GET", "POST"],
     },
 });
 
@@ -70,10 +71,16 @@ app.use("/chat", (req, res, next) => {
         });
 
         // Example: Handle chat messages
-        socket.on("sendMessage", (message) => {
+        socket.on("sendmsg", (message) => {
             console.log(`[Chat] Received message: ${message}`);
             // Process and broadcast the message
-            io.to("chatRoom").emit("message", message);
+            io.to("chatRoom").emit("rcvmsg", message);
+            messageModel.create({
+                memberId: message.memberId,
+                roomId: message.roomId,
+                file: message.file,
+                content: message.content
+            })
         });
     });
 
